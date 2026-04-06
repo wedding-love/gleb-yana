@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Приглашение | Глеб & Яна</title>
+  <!-- Тонкие, элегантные шрифты: Cormorant Garamond (light) и Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+
+    /* Все заголовки — тонкий, изящный шрифт */
+    h1, h2, h3, .hero .names, .date, .love, .title, .month, .location h2, .timing h2, 
+    .dresscode-section h2, .details-section h2, .rsvp h2, .wedding-block h1, 
+    .contacts-block h2, .invite, .names-sign, .music-text, .time, .sub, .subtitle,
+    .timer span, .calendar-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    /* Основной текст — Inter, лёгкий и читаемый */
+    p, .text, .desc, .person, .address, .footer-text, .note, label, .radio-group, button, .btn, .btn-location, .btn-chat, .time, .drinks-group {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Убираем все отступы между блоками — идут встык */
+    section, .music, .rsvp, .contacts-block, .wedding-block {
+      margin: 0;
+      padding: 60px 20px;
+    }
+
+    .hero, .wedding-block {
+      padding: 0;
+    }
+
+    /* ===== ПЕРВЫЙ ЭКРАН ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    }
+    .names {
+      position: absolute;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+      font-size: clamp(48px, 10vw, 120px);
+      line-height: 1.2;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      text-transform: capitalize;
+      font-weight: 400;
+    }
+    .names .amp {
+      font-size: 0.9em;
+    }
+    .date {
+      position: absolute;
+      right: 6%;
+      top: 38%;
+      color: #fff;
+      text-align: right;
+      font-size: clamp(40px, 8vw, 100px);
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      line-height: 1.1;
+      font-weight: 400;
+    }
+
+    /* ===== МУЗЫКА ===== */
+    .music {
+      text-align: center;
+      background: #ffffff;
+      padding: 30px 20px;
+    }
+    .music button {
+      background: transparent;
+      border: none;
+      font-size: 44px;
+      cursor: pointer;
+      color: #1e1e1e;
+      transition: transform 0.2s;
+      padding: 0;
+      width: auto;
+      height: auto;
+    }
+    .music button:hover {
+      transform: scale(1.05);
+    }
+    .music-text {
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-top: 12px;
+      color: #2c2c2c;
+    }
+
+    /* ===== ИСТОРИЯ + ФОТО ПОЛАРОИД ===== */
+    .story {
+      background: #ffffff;
+      text-align: center;
+    }
+    .photos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 45px;
+    }
+    .photo {
+      background: #fff;
+      padding: 10px 10px 16px 10px;
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+    }
+    .photo img {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+    .photo:first-child {
+      transform: translateY(-8px) translateX(-4px) rotate(-3deg);
+    }
+    .photo:last-child {
+      transform: translateY(8px) translateX(4px) rotate(3deg);
+    }
+    .love {
+      font-size: clamp(44px, 8vw, 68px);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .heart-icon {
+      color: #b13e4b;
+      font-size: 1.2em;
+      display: inline-block;
+    }
+    .title {
+      font-size: 28px;
+      margin: 20px 0 16px;
+      font-weight: 400;
+    }
+    .text {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #3e3e3e;
+    }
+
+    /* ===== БЛОК "РОДНЫЕ И ЛЮБИМЫЕ" ===== */
+    .invite-block {
+      background: #ffffff;
+      text-align: center;
+    }
+    .frame {
+      background: #fff;
+      padding: 10px 10px 18px 10px;
+      display: inline-block;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      margin-bottom: 35px;
+    }
+    .frame img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+    }
+    .invite-block h2 {
+      font-size: 38px;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .invite-block p {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* ===== КАЛЕНДАРЬ (число 9 в сердце) ===== */
+    .calendar-block {
+      background: #ffffff;
+      text-align: center;
+    }
+    .month {
+      margin-bottom: 24px;
+      font-size: 30px;
+      font-weight: 400;
+    }
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      max-width: 360px;
+      margin: 0 auto 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6b6b6b;
+    }
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      max-width: 360px;
+      margin: 0 auto;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .days span {
+      padding: 8px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .heart-number {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+    }
+    .heart-number i {
+      position: absolute;
+      font-size: 44px;
+      color: #e34234;
+    }
+    .heart-number span {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-weight: 600;
+      font-size: 20px;
+      font-family: 'Inter', sans-serif;
+    }
+    .calendar-date {
+      margin-top: 32px;
+      font-size: 30px;
+      font-weight: 400;
+    }
+    .footer-text {
+      margin-top: 24px;
+      font-size: 16px;
+      color: #4a4a4a;
+    }
+
+    /* ===== МЕСТО ПРОВЕДЕНИЯ (НОВЫЙ ЦВЕТ) ===== */
+    .location {
+      background: #b7a99a;
+      color: #fff;
+      text-align: center;
+    }
+    .location h2 {
+      font-size: 44px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+    .location .sub {
+      font-size: 32px;
+      opacity: 0.9;
+      margin-bottom: 35px;
+    }
+    .info .main {
+      font-weight: 500;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .address {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    .btn-location {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 28px;
+      border: 1px solid #fff;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: 0.2s;
+      background: transparent;
+    }
+    .btn-location:hover {
+      background: #fff;
+      color: #b7a99a;
+    }
+    .photos-loc {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      flex-wrap: wrap;
+    }
+    .polaroid-card {
+      background: #fff;
+      padding: 6px 6px 12px 6px;
+      box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+      transform: rotate(var(--rot, 0deg));
+    }
+    .polaroid-card img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+    }
+    .p1-wrap { --rot: -8deg; position: relative; top: -10px; }
+    .p2-wrap { --rot: 8deg; position: relative; top: 15px; }
+
+    /* Дополнительный блок ЗАГС */
+    .registry {
+      background: #b7a99a;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px 60px;
+    }
+    .registry h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .registry .address-reg {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* ===== ТАЙМИНГ ДНЯ (НОВЫЙ ЦВЕТ) ===== */
+    .timing {
+      background: #b7a99a;
+      color: #fff;
+      text-align: center;
+      padding-bottom: 70px;
+    }
+    .timing h2 { font-size: 44px; font-weight: 400; }
+    .timing .sub {
+      font-size: 32px;
+      margin-bottom: 45px;
+      opacity: 0.9;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+    .item {
+      max-width: 340px;
+      margin: auto;
+      opacity: 1;
+      transform: none;
+    }
+    .icon { font-size: 48px; margin-bottom: 12px; color: #fff; }
+    .time { font-size: 32px; font-weight: 400; margin-bottom: 8px; }
+    .timing .title { font-size: 22px; font-weight: 500; }
+    .desc { font-size: 15px; opacity: 0.85; margin-top: 8px; font-style: italic; }
+
+    /* ===== ДРЕСС-КОД И ДЕТАЛИ ===== */
+    .dresscode-section, .details-section {
+      background: #ffffff;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .dresscode-section h2, .details-section h2 { font-size: 40px; margin-bottom: 12px; font-weight: 400; }
+    .subtitle {
+      font-size: 26px;
+      color: #a0a0a0;
+      margin-bottom: 28px;
+    }
+    .dresscode-section p, .details-section p {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .btn-chat {
+      display: inline-block;
+      padding: 12px 32px;
+      background: #b7a99a;
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: 0.2s;
+      margin-top: 12px;
+    }
+    .btn-chat:hover { background: #a18e7c; }
+
+    /* ===== СЛАЙДЕР ===== */
+    .slider-section {
+      background: #ffffff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    }
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+    .slide {
+      flex: 0 0 100%;
+    }
+    .slide img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      font-size: 28px;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .btn-prev { left: 20px; }
+    .btn-next { right: 20px; }
+    .slider-dots {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+      margin: 0 6px;
+      cursor: pointer;
+    }
+    .dot.active { background: #b7a99a; width: 12px; height: 12px; }
+
+    /* ===== ТАЙМЕР "ДО СВАДЬБЫ" ===== */
+    .wedding-block {
+      position: relative;
+      height: 85vh;
+      min-height: 500px;
+      background: url('молодые.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: center;
+      padding: 0;
+    }
+    .wedding-block .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .wedding-block .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .wedding-block h1 {
+      margin-top: 30px;
+      font-size: clamp(32px, 7vw, 48px);
+      letter-spacing: 2px;
+      font-weight: 400;
+    }
+    .wedding-block .timer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+    .wedding-block .timer div {
+      text-align: center;
+      background: none;
+      padding: 0;
+    }
+    .wedding-block .timer span {
+      font-size: 56px;
+      font-weight: 400;
+      display: block;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    .wedding-block .timer small {
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    /* ===== КОНТАКТЫ ===== */
+    .contacts-block {
+      background: #b7a99a;
+      color: #ffffff;
+      text-align: center;
+    }
+    .contacts-content {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+    .contacts-block h2 {
+      font-size: 44px;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+    .desc {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    .person {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+    .person span {
+      font-size: 15px;
+      opacity: 0.8;
+    }
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.4);
+      margin: 30px 0;
+    }
+    .invite {
+      font-size: 26px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+    .love {
+      font-style: italic;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    .names-sign {
+      font-size: 44px;
+      text-transform: capitalize;
+      font-weight: 400;
+    }
+
+    /* ===== RSVP (НОВЫЙ ЦВЕТ) ===== */
+    .rsvp {
+      background: #b7a99a;
+      color: #fff;
+      text-align: center;
+    }
+    .rsvp .container {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .rsvp h2 { font-size: 44px; margin-bottom: 10px; font-weight: 400; }
+    .rsvp .subtitle {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .rsvp .note {
+      font-size: 16px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+    .rsvp form {
+      text-align: left;
+    }
+    .rsvp label {
+      display: block;
+      font-size: 16px;
+      margin: 22px 0 8px;
+      font-weight: 500;
+    }
+    .rsvp input[type="text"], 
+    .rsvp select {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.7);
+      background: transparent;
+      padding: 10px 0;
+      color: #fff;
+      outline: none;
+      font-size: 16px;
+    }
+    .rsvp input::placeholder, .rsvp select { color: rgba(255,255,255,0.8); }
+    .rsvp select option { background: #b7a99a; color: #1e1e1e; }
+    .radio-group {
+      margin: 15px 0 10px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      font-weight: normal;
+      margin: 12px 0;
+    }
+    .radio-group input[type="radio"] { accent-color: #fff; width: 18px; height: 18px; }
+    .drinks-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 10px 0 5px;
+    }
+    .drinks-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: normal;
+      margin: 0;
+    }
+    .rsvp button {
+      width: 100%;
+      margin-top: 40px;
+      padding: 14px;
+      border: 1px solid #fff;
+      border-radius: 50px;
+      background: transparent;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .rsvp button:hover { background: #fff; color: #b7a99a; }
+
+    @media (max-width: 680px) {
+      .photo img { width: 140px; height: 140px; }
+      .frame img { width: 240px; height: 240px; }
+      .slide img { height: 320px; }
+      .wedding-block .timer span { font-size: 40px; }
+      .wedding-block .timer { gap: 20px; }
+      .polaroid-card img { width: 110px; height: 110px; }
+      .contacts-block h2 { font-size: 38px; }
+      .names-sign { font-size: 38px; }
+      .invite { font-size: 22px; }
+      .dresscode-section, .details-section { padding: 50px 20px; }
+      .timer div { min-width: 60px; }
+      .time { font-size: 28px; }
+      .timing .title { font-size: 20px; }
+    }
+    @media (max-width: 480px) {
+      .photo img { width: 120px; height: 120px; }
+      .frame img { width: 200px; height: 200px; }
+      .wedding-block .timer span { font-size: 32px; }
+      .wedding-block .timer { gap: 15px; }
+      .wedding-block h1 { font-size: 26px; }
+      .slider-section { padding: 40px 20px; }
+      .heart-number { width: 38px; height: 38px; }
+      .heart-number i { font-size: 38px; }
+      .heart-number span { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ПЕРВЫЙ ЭКРАН -->
+<section class="hero">
+  <img src="молодые.jpeg" alt="Глеб и Яна">
+  <div class="hero-overlay"></div>
+  <div class="date">19<br>09<br>26</div>
+  <div class="names">
+    Глеб<br>
+    <span class="amp">&</span><br>
+    Яна
+  </div>
+</section>
+
+<!-- МУЗЫКА -->
+<div class="music">
+  <button id="musicToggleBtn"><i class="fas fa-play"></i></button>
+  <div class="music-text">ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ МУЗЫКУ</div>
+  <audio id="weddingAudio" src="music.mp3" loop preload="auto"></audio>
+</div>
+
+<!-- ИСТОРИЯ -->
+<section class="story">
+  <div class="photos">
+    <div class="photo"><img src="1.png" alt="Детское фото"></div>
+    <div class="photo"><img src="2.png" alt="Детское фото 2"></div>
+  </div>
+  <div class="love">Г + Я <span class="heart-icon">♡</span></div>
+  <div class="title">Узнаете этих детишек?</div>
+  <div class="text">Да-да, это мы!<br><br>Время летит так быстро, представляете? И вот мы уже повзрослели,<br>кажется пришло время создавать свою семью!</div>
+</section>
+
+<!-- РОДНЫЕ И ЛЮБИМЫЕ -->
+<section class="invite-block">
+  <div class="frame"><img src="пара.jpg" alt="Пара"></div>
+  <h2>РОДНЫЕ И ЛЮБИМЫЕ!</h2>
+  <p>Хотим, чтобы вы разделили с нами радость и были на торжестве в самый лучший и трогательный день в нашей жизни!</p>
+</section>
+
+<!-- КАЛЕНДАРЬ -->
+<section class="calendar-block">
+  <div class="month">— СЕНТЯБРЬ 2026 —</div>
+  <div class="weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
+  <div class="days">
+    <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    <span>6</span><span>7</span><span>8</span>
+    <span>
+      <div class="heart-number">
+        <i class="fas fa-heart"></i>
+        <span>19</span>
+      </div>
+    </span>
+    <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+    <span>27</span><span>28</span><span>29</span><span>30</span>
+  </div>
+  <div class="calendar-date">19.09.2026</div>
+  <p class="footer-text">Мы будем безумно рады видеть вас в кругу наших гостей</p>
+</section>
+
+<!-- МЕСТО ПРОВЕДЕНИЯ + ЗАГС -->
+<section class="location">
+  <h2>МЕСТО<br>ПРОВЕДЕНИЯ</h2>
+  <div class="sub">location</div>
+  <div class="info"><p class="main">Усадьба Бацькава Хата</p><p>Сморгонский район</p><p class="address">деревня Сутьково, 66</p></div>
+  <a href="https://yandex.by/maps/org/agrousadba_batskova_khata/144078539445/?ll=26.380394%2C54.386574&mode=search&sll=26.380394%2C54.385067&source=serp_navig&text=Усадьба%20Бацькава%20Хата&z=8" class="btn-location">ПОКАЗАТЬ НА КАРТЕ</a>
+  <div class="photos-loc">
+    <div class="polaroid-card p1-wrap"><img src="место1.png" alt="Локация 1"></div>
+    <div class="polaroid-card p2-wrap"><img src="место2.jpg" alt="Локация 2"></div>
+  </div>
+</section>
+
+<!-- ДОПОЛНИТЕЛЬНО: ЗАГС -->
+<section class="registry">
+  <h3>Торжественная регистрация</h3>
+  <p class="address-reg">Минская область, г. Молодечно, Центральная площадь, 5</p>
+  <p style="margin-top: 15px; opacity: 0.9;">Начало церемонии в 14:10</p>
+</section>
+
+<!-- ТАЙМИНГ ДНЯ (исправленный) -->
+<section class="timing">
+  <h2>ТАЙМИНГ ДНЯ</h2>
+  <div class="sub">Timing</div>
+  <div class="timeline">
+    <div class="item">
+      <div class="icon"><i class="fas fa-ring"></i></div>
+      <div class="time">14:10</div>
+      <div class="title">Церемония в ЗАГСе</div>
+      <div class="desc">Молодечно, Центральная площадь 5</div>
+    </div>
+    <div class="item">
+      <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="time">16:00</div>
+      <div class="title">Фуршет </div>
+    </div>
+    <div class="item">
+      <div class="icon"><i class="fas fa-utensils"></i></div>
+      <div class="time">17:00</div>
+      <div class="title">Банкет</div>
+    </div>
+    <div class="item">
+      <div class="icon"><i class="fas fa-birthday-cake"></i></div>
+      <div class="time">00:00</div>
+      <div class="title">Завершение вечера</div>
+    </div>
+  </div>
+</section>
+
+<!-- ДРЕСС-КОД -->
+<section class="dresscode-section">
+  <h2>ДРЕСС - КОД</h2>
+  <div class="subtitle">dress-code</div>
+  <p>Дресс-код свободный! В этот день мы не ограничиваем Вас в выборе цвета и стиля. Главное, чтобы Вы чувствовали себя комфортно и уютно!</p>
+</section>
+
+<!-- ДЕТАЛИ -->
+<section class="details-section">
+  <h2>Пожелания</h2>
+  <div class="subtitle">details</div>
+  <p>Мы знаем, как Вы за нас рады и будем счастливы, если Вы захватите с собой отличное настроение и слезы умиления, а букеты замените на бутылку Вашего любимого алкогольного напитка, который мы откроем на ближайшем совместном празднике!</p>
+</section>
+
+
+<!-- ТАЙМЕР ДО СВАДЬБЫ (дата 19.09.2026) -->
+<section class="wedding-block">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>ДО НАШЕЙ СВАДЬБЫ<br>ОСТАЛОСЬ:</h1>
+    <div class="timer">
+      <div><span id="weddingDays">0</span><small>ДНЕЙ</small></div>
+      <div><span id="weddingHours">0</span><small>ЧАСОВ</small></div>
+      <div><span id="weddingMinutes">0</span><small>МИНУТ</small></div>
+      <div><span id="weddingSeconds">0</span><small>СЕКУНД</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- АНКЕТА ГОСТЯ с Formspree и выбором напитков -->
+<section class="rsvp">
+  <div class="container">
+    <h2>АНКЕТА ГОСТЯ</h2>
+    <div class="subtitle">RSVP</div>
+    <p class="note">пожалуйста, подтвердите свое присутствие до 01.09.2026</p>
+    <form id="rsvpForm" action="https://formspree.io/f/xreooebl" method="POST">
+      <label>Ваше имя и фамилия</label>
+      <input type="text" name="name" placeholder="Имя и фамилия" required>
+      
+      <label>Сможете ли Вы присутствовать</label>
+      <div class="radio-group">
+        <label><input type="radio" name="attendance" value="Да, смогу" required> Да, смогу</label>
+        <label><input type="radio" name="attendance" value="Нет, не смогу"> Нет, не смогу</label>
+      </div>
+      
+      <label>Если Вы придете с парой или семьей, то впишите все имена</label>
+      <input type="text" name="guests_names" placeholder="Имена и возраст">
+      
+      <label>Предпочтения по напиткам (можно выбрать несколько)</label>
+      <div class="drinks-group">
+        <label><input type="checkbox" name="drinks" value="Шампанское"> Шампанское</label>
+        <label><input type="checkbox" name="drinks" value="Белое вино"> Белое вино</label>
+        <label><input type="checkbox" name="drinks" value="Красное вино"> Красное вино</label>
+        <label><input type="checkbox" name="drinks" value="Водка"> Водка</label>
+        <label><input type="checkbox" name="drinks" value="Виски"> Виски</label>
+        <label><input type="checkbox" name="drinks" value="Коньяк"> Коньяк</label>
+        <label><input type="checkbox" name="drinks" value="Безалкогольное"> Безалкогольное</label>
+      </div>
+      
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section class="contacts-block">
+  <div class="contacts-content">
+    <h2>КОНТАКТЫ</h2>
+    <p class="desc">По всем вопросам вы можете<br>обращаться к нам</p>
+    <p class="person">Глеб +375297046554<br>Яна +375259027479</p>
+    <div class="divider"></div>
+    <p class="invite">С НЕТЕРПЕНИЕМ ЖДЕМ<br>ВСТРЕЧИ С ВАМИ<br>НА НАШЕЙ СВАДЬБЕ!</p>
+    <p class="love">С любовью,</p>
+    <p class="names-sign">Глеб & Яна</p>
+  </div>
+</section>
+
+<script>
+  // Музыка
+  const audio = document.getElementById('weddingAudio');
+  const toggleBtn = document.getElementById('musicToggleBtn');
+  function updateButtonIcon() {
+    toggleBtn.innerHTML = audio.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+  }
+  toggleBtn.addEventListener('click', () => {
+    if (audio.paused) audio.play().catch(e => console.log);
+    else audio.pause();
+    updateButtonIcon();
+  });
+  updateButtonIcon();
+  audio.addEventListener('ended', () => { if (audio.loop) audio.play(); });
+
+  // Таймер до 19 сентября 2026 года
+  const weddingDate = new Date("2026-09-19T00:00:00").getTime();
+  function updateWeddingTimer() {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    if (diff <= 0) {
+      document.getElementById("weddingDays").innerText = "0";
+      document.getElementById("weddingHours").innerText = "0";
+      document.getElementById("weddingMinutes").innerText = "0";
+      document.getElementById("weddingSeconds").innerText = "0";
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    document.getElementById("weddingDays").innerText = days;
+    document.getElementById("weddingHours").innerText = hours < 10 ? "0"+hours : hours;
+    document.getElementById("weddingMinutes").innerText = minutes < 10 ? "0"+minutes : minutes;
+    document.getElementById("weddingSeconds").innerText = seconds < 10 ? "0"+seconds : seconds;
+  }
+  setInterval(updateWeddingTimer, 1000);
+  updateWeddingTimer();
+
+  // Слайдер
+  const sliderWrapper = document.getElementById('sliderWrapper');
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+  const dotsContainer = document.getElementById('sliderDots');
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+  function updateSlider() {
+    sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+    document.querySelectorAll('.dot').forEach((dot, idx) => { dot.classList.toggle('active', idx === currentIndex); });
+  }
+  function createDots() {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === currentIndex) dot.classList.add('active');
+      dot.addEventListener('click', () => { currentIndex = i; updateSlider(); });
+      dotsContainer.appendChild(dot);
+    }
+  }
+  if (totalSlides > 0) {
+    prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateSlider(); });
+    nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % totalSlides; updateSlider(); });
+    createDots();
+  }
+
+  // Форма отправляется на Formspree, дополнительно показываем сообщение
+  const rsvpForm = document.getElementById('rsvpForm');
+  rsvpForm.addEventListener('submit', (e) => {
+    // Formspree обработает отправку асинхронно, но мы покажем уведомление
+    setTimeout(() => {
+      alert('Спасибо! Ваш ответ отправлен.');
+    }, 100);
+  });
+</script>
+</body>
+</html>

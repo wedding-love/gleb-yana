@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Приглашение | Глеб & Яна</title>
-  <!-- Тонкие, элегантные шрифты: Cormorant Garamond (light) и Inter -->
+  <!-- Шрифты: Cormorant Garamond (лёгкий) и Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,7 +24,7 @@
       overflow-x: hidden;
     }
 
-    /* Все заголовки — тонкий, изящный шрифт */
+    /* Заголовки — изящный шрифт */
     h1, h2, h3, .hero .names, .date, .love, .title, .month, .location h2, .timing h2, 
     .dresscode-section h2, .details-section h2, .rsvp h2, .wedding-block h1, 
     .contacts-block h2, .invite, .names-sign, .music-text, .time, .sub, .subtitle,
@@ -34,7 +34,7 @@
       letter-spacing: 1px;
     }
 
-    /* Основной текст — Inter, лёгкий и читаемый */
+    /* Основной текст — Inter */
     p, .text, .desc, .person, .address, .footer-text, .note, label, .radio-group, button, .btn, .btn-location, .btn-chat, .time, .drinks-group {
       font-family: 'Inter', sans-serif;
     }
@@ -55,10 +55,10 @@
       inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
     }
-    /* ИМЕНА В ОДИН РЯД И ПОДНЯТЫ ВЫШЕ */
+    /* ИМЕНА В ОДИН РЯД — всегда одна строка без переносов */
     .names {
       position: absolute;
-      bottom: 18%;   /* поднято выше (было 6%) */
+      bottom: 18%;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -68,18 +68,17 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
       font-weight: 400;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
       gap: 0.2em;
       white-space: nowrap;
     }
+    /* на совсем маленьких экранах уменьшаем отступы, но сохраняем строку */
     @media (max-width: 550px) {
       .names {
-        white-space: normal;
-        flex-wrap: wrap;
-        gap: 0.1em;
         font-size: clamp(42px, 12vw, 80px);
         bottom: 12%;
+        gap: 0.1em;
       }
     }
     .names .amp {
@@ -112,8 +111,6 @@
       color: #1e1e1e;
       transition: transform 0.2s;
       padding: 0;
-      width: auto;
-      height: auto;
     }
     .music button:hover {
       transform: scale(1.05);
@@ -123,6 +120,21 @@
       letter-spacing: 2px;
       margin-top: 12px;
       color: #2c2c2c;
+    }
+
+    /* ===== АНИМАЦИЯ ПРИ ПРОКРУТКЕ (плавное появление) ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* отдельные элементы с небольшой задержкой можно оставить на усмотрение */
+    .fade-up-fast {
+      transition-duration: 0.6s;
     }
 
     /* ===== ИСТОРИЯ + ФОТО ПОЛАРОИД ===== */
@@ -178,7 +190,7 @@
       color: #3e3e3e;
     }
 
-    /* ===== БЛОК "РОДНЫЕ И ЛЮБИМЫЕ" ===== */
+    /* ===== РОДНЫЕ И ЛЮБИМЫЕ ===== */
     .invite-block {
       background: #ffffff;
       text-align: center;
@@ -208,7 +220,7 @@
       color: #444;
     }
 
-    /* ===== КАЛЕНДАРЬ (сердце мигает) ===== */
+    /* ===== КАЛЕНДАРЬ ===== */
     .calendar-block {
       background: #ffffff;
       text-align: center;
@@ -341,7 +353,7 @@
     .p1-wrap { --rot: -8deg; position: relative; top: -10px; }
     .p2-wrap { --rot: 8deg; position: relative; top: 15px; }
 
-    /* Блок ЗАГС — кнопка теперь как в локации (btn-location) */
+    /* ЗАГС */
     .registry {
       background: #b7a99a;
       color: #fff;
@@ -359,7 +371,6 @@
       opacity: 0.9;
       margin-bottom: 20px;
     }
-    /* кнопка как btn-location */
     .registry .btn-location {
       display: inline-block;
       margin-top: 10px;
@@ -368,8 +379,6 @@
       color: #fff;
       text-decoration: none;
       font-size: 14px;
-      letter-spacing: 1px;
-      transition: 0.2s;
       background: transparent;
     }
     .registry .btn-location:hover {
@@ -377,7 +386,7 @@
       color: #b7a99a;
     }
 
-    /* ===== ТАЙМИНГ ДНЯ (без подробных описаний) ===== */
+    /* ===== ТАЙМИНГ ===== */
     .timing {
       background: #b7a99a;
       color: #fff;
@@ -402,7 +411,6 @@
     .icon { font-size: 48px; margin-bottom: 12px; color: #fff; }
     .time { font-size: 32px; font-weight: 400; margin-bottom: 8px; }
     .timing .title { font-size: 22px; font-weight: 500; }
-    /* убрали .desc полностью */
 
     /* ===== ДРЕСС-КОД И ДЕТАЛИ ===== */
     .dresscode-section, .details-section {
@@ -437,7 +445,7 @@
     }
     .btn-chat:hover { background: #a18e7c; }
 
-    /* ===== СЛАЙДЕР (оставлен для совместимости) ===== */
+    /* ===== СЛАЙДЕР ===== */
     .slider-section {
       background: #ffffff;
       max-width: 900px;
@@ -493,10 +501,11 @@
     }
     .dot.active { background: #b7a99a; width: 12px; height: 12px; }
 
-    /* ===== ТАЙМЕР "ДО СВАДЬБЫ" ===== */
+    /* ===== БЛОК "ДО НАШЕЙ СВАДЬБЫ" — ПОЛНЫЙ ЭКРАН ===== */
     .wedding-block {
       position: relative;
-      height: 85vh;
+      height: 100vh;           /* вся высота экрана */
+      width: 100%;
       min-height: 500px;
       background: url('image.png') center/cover no-repeat;
       color: white;
@@ -554,7 +563,7 @@
       font-weight: 300;
     }
 
-    /* ===== КОНТАКТЫ (телефоны белые, без подчеркивания) ===== */
+    /* ===== КОНТАКТЫ: номера белые, без подчеркивания ===== */
     .contacts-block {
       background: #b7a99a;
       color: #ffffff;
@@ -608,7 +617,7 @@
       font-weight: 400;
     }
 
-    /* ===== RSVP (анкета) без RSVP подзаголовка ===== */
+    /* ===== АНКЕТА (RSVP) — ЧЕРНЫЕ КРУЖКИ / ГАЛОЧКИ ===== */
     .rsvp {
       background: #b7a99a;
       color: #fff;
@@ -619,7 +628,6 @@
       margin: 0 auto;
     }
     .rsvp h2 { font-size: 44px; margin-bottom: 10px; font-weight: 400; }
-    /* скрыли .subtitle (RSVP) */
     .rsvp .note {
       font-size: 16px;
       margin-bottom: 32px;
@@ -647,6 +655,16 @@
     }
     .rsvp input::placeholder, .rsvp select { color: rgba(255,255,255,0.8); }
     .rsvp select option { background: #b7a99a; color: #1e1e1e; }
+    
+    /* ЧЁРНЫЕ КРУЖКИ И ГАЛОЧКИ для радио и чекбоксов */
+    .rsvp input[type="radio"],
+    .rsvp input[type="checkbox"] {
+      accent-color: #000000;  /* чёрный цвет для стандартных элементов в современных браузерах */
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      margin-right: 8px;
+    }
     .radio-group {
       margin: 15px 0 10px;
     }
@@ -662,19 +680,10 @@
       padding: 6px 8px;
       cursor: pointer;
     }
-    /* Визуальное выделение выбранного радио */
     .radio-group label:has(input:checked) {
       background-color: rgba(255, 255, 255, 0.25);
       padding-left: 12px;
     }
-    .radio-group input[type="radio"] { 
-      accent-color: #fff; 
-      width: 18px; 
-      height: 18px;
-      cursor: pointer;
-    }
-    
-    /* НАПИТКИ СТОЛБИКОМ + выделение выбранных чекбоксов */
     .drinks-group {
       display: flex;
       flex-direction: column;
@@ -696,12 +705,6 @@
     .drinks-group label:has(input:checked) {
       background-color: rgba(255, 255, 255, 0.25);
       padding-left: 12px;
-    }
-    .drinks-group input {
-      width: 18px;
-      height: 18px;
-      accent-color: #fff;
-      cursor: pointer;
     }
     .rsvp button {
       width: 100%;
@@ -728,10 +731,8 @@
       .contacts-block h2 { font-size: 38px; }
       .names-sign { font-size: 38px; }
       .invite { font-size: 22px; }
-      .dresscode-section, .details-section { padding: 50px 20px; }
       .timer div { min-width: 60px; }
       .time { font-size: 28px; }
-      .timing .title { font-size: 20px; }
     }
     @media (max-width: 480px) {
       .photo img { width: 120px; height: 120px; }
@@ -739,7 +740,6 @@
       .wedding-block .timer span { font-size: 32px; }
       .wedding-block .timer { gap: 15px; }
       .wedding-block h1 { font-size: 26px; }
-      .slider-section { padding: 40px 20px; }
       .heart-number { width: 38px; height: 38px; }
       .heart-number i { font-size: 38px; }
       .heart-number span { font-size: 18px; }
@@ -748,7 +748,7 @@
 </head>
 <body>
 
-<!-- ПЕРВЫЙ ЭКРАН: имена в один ряд, подняты выше -->
+<!-- ПЕРВЫЙ ЭКРАН: имена в одну строку -->
 <section class="hero">
   <img src="молодые.jpeg" alt="Глеб и Яна">
   <div class="hero-overlay"></div>
@@ -761,14 +761,14 @@
 </section>
 
 <!-- МУЗЫКА -->
-<div class="music">
+<div class="music fade-up">
   <button id="musicToggleBtn"><i class="fas fa-play"></i></button>
   <div class="music-text">ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ МУЗЫКУ</div>
   <audio id="weddingAudio" src="Beautiful_Boys_-_Nezhnaya_Lyubov_77602132.mp3" loop preload="auto"></audio>
 </div>
 
 <!-- ИСТОРИЯ -->
-<section class="story">
+<section class="story fade-up">
   <div class="photos">
     <div class="photo"><img src="1.png" alt="Детское фото"></div>
     <div class="photo"><img src="2.png" alt="Детское фото 2"></div>
@@ -779,14 +779,14 @@
 </section>
 
 <!-- РОДНЫЕ И ЛЮБИМЫЕ -->
-<section class="invite-block">
-  <div class="frame"><img src="молодые.jpg" alt="Пара"></div>
+<section class="invite-block fade-up">
+  <div class="frame"><img src="молодые.jpeg" alt="Пара"></div>
   <h2>РОДНЫЕ И ЛЮБИМЫЕ!</h2>
   <p>Хотим, чтобы вы разделили с нами радость и были на торжестве в самый лучший и трогательный день в нашей жизни!</p>
 </section>
 
-<!-- КАЛЕНДАРЬ (сердце мигает) -->
-<section class="calendar-block">
+<!-- КАЛЕНДАРЬ -->
+<section class="calendar-block fade-up">
   <div class="month">— СЕНТЯБРЬ 2026 —</div>
   <div class="weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
   <div class="days">
@@ -806,7 +806,7 @@
 </section>
 
 <!-- МЕСТО ПРОВЕДЕНИЯ -->
-<section class="location">
+<section class="location fade-up">
   <h2>МЕСТО<br>ПРОВЕДЕНИЯ</h2>
   <div class="sub">location</div>
   <div class="info"><p class="main">Усадьба Бацькава Хата</p><p>Сморгонский район</p><p class="address">деревня Сутьково, 66</p></div>
@@ -817,57 +817,41 @@
   </div>
 </section>
 
-<!-- ЗАГС + кнопка в стиле btn-location -->
-<section class="registry">
+<!-- ЗАГС -->
+<section class="registry fade-up">
   <h3>Торжественная регистрация</h3>
   <p class="address-reg">Минская область, г. Молодечно, Центральная площадь, 5</p>
   <p style="margin-bottom: 16px; opacity: 0.9;">Начало церемонии в 14:10</p>
   <a href="https://yandex.by/maps/?text=Молодечно%20Центральная%20площадь%205&mode=search" target="_blank" rel="noopener noreferrer" class="btn-location">ОТКРЫТЬ В КАРТАХ</a>
 </section>
 
-<!-- ТАЙМИНГ ДНЯ (без подробных описаний) -->
-<section class="timing">
+<!-- ТАЙМИНГ -->
+<section class="timing fade-up">
   <h2>ТАЙМИНГ ДНЯ</h2>
   <div class="sub">Timing</div>
   <div class="timeline">
-    <div class="item">
-      <div class="icon"><i class="fas fa-ring"></i></div>
-      <div class="time">14:10</div>
-      <div class="title">Церемония в ЗАГСе</div>
-    </div>
-    <div class="item">
-      <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-      <div class="time">16:00</div>
-      <div class="title">Фуршет в усадьбе</div>
-    </div>
-    <div class="item">
-      <div class="icon"><i class="fas fa-utensils"></i></div>
-      <div class="time">17:00</div>
-      <div class="title">Банкет</div>
-    </div>
-    <div class="item">
-      <div class="icon"><i class="fas fa-birthday-cake"></i></div>
-      <div class="time">00:00</div>
-      <div class="title">Завершение вечера</div>
-    </div>
+    <div class="item"><div class="icon"><i class="fas fa-ring"></i></div><div class="time">14:10</div><div class="title">Церемония в ЗАГСе</div></div>
+    <div class="item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div class="time">16:00</div><div class="title">Фуршет в усадьбе</div></div>
+    <div class="item"><div class="icon"><i class="fas fa-utensils"></i></div><div class="time">17:00</div><div class="title">Банкет</div></div>
+    <div class="item"><div class="icon"><i class="fas fa-birthday-cake"></i></div><div class="time">00:00</div><div class="title">Завершение вечера</div></div>
   </div>
 </section>
 
 <!-- ДРЕСС-КОД -->
-<section class="dresscode-section">
+<section class="dresscode-section fade-up">
   <h2>ДРЕСС - КОД</h2>
   <div class="subtitle">dress-code</div>
   <p>Дресс-код свободный! В этот день мы не ограничиваем Вас в выборе цвета и стиля. Главное, чтобы Вы чувствовали себя комфортно и уютно!</p>
 </section>
 
 <!-- ДЕТАЛИ -->
-<section class="details-section">
+<section class="details-section fade-up">
   <h2>Пожелания</h2>
   <div class="subtitle">details</div>
   <p>Мы знаем, как Вы за нас рады и будем счастливы, если Вы захватите с собой отличное настроение и слезы умиления, а букеты замените на бутылку Вашего любимого алкогольного напитка, который мы откроем на ближайшем совместном празднике!</p>
 </section>
 
-<!-- ТАЙМЕР ДО СВАДЬБЫ -->
+<!-- ТАЙМЕР "ДО НАШЕЙ СВАДЬБЫ" - полный экран -->
 <section class="wedding-block">
   <div class="overlay"></div>
   <div class="content">
@@ -881,11 +865,10 @@
   </div>
 </section>
 
-<!-- АНКЕТА ГОСТЯ: убран подзаголовок RSVP, напитки столбиком + визуальный фидбек при выборе -->
-<section class="rsvp">
+<!-- АНКЕТА ГОСТЯ (чёрные отметки) -->
+<section class="rsvp fade-up">
   <div class="container">
     <h2>АНКЕТА ГОСТЯ</h2>
-    <!-- удален div.subtitle -->
     <p class="note">пожалуйста, подтвердите свое присутствие до 01.09.2026</p>
     <form id="rsvpForm" action="https://formspree.io/f/xreooebl" method="POST">
       <label>Ваше имя и фамилия</label>
@@ -916,8 +899,8 @@
   </div>
 </section>
 
-<!-- КОНТАКТЫ (телефоны белые, без подчеркивания) -->
-<section class="contacts-block">
+<!-- КОНТАКТЫ (номера белые, без подчеркивания) -->
+<section class="contacts-block fade-up">
   <div class="contacts-content">
     <h2>КОНТАКТЫ</h2>
     <p class="desc">По всем вопросам вы можете<br>обращаться к нам</p>
@@ -930,7 +913,7 @@
 </section>
 
 <script>
-  // Музыка (без анимации блоков)
+  // Музыка
   const audio = document.getElementById('weddingAudio');
   const toggleBtn = document.getElementById('musicToggleBtn');
   function updateButtonIcon() {
@@ -944,7 +927,7 @@
   updateButtonIcon();
   audio.addEventListener('ended', () => { if (audio.loop) audio.play(); });
 
-  // Таймер до 19 сентября 2026 года
+  // Таймер до 19 сентября 2026
   const weddingDate = new Date("2026-09-19T00:00:00").getTime();
   function updateWeddingTimer() {
     const now = new Date().getTime();
@@ -968,7 +951,28 @@
   setInterval(updateWeddingTimer, 1000);
   updateWeddingTimer();
 
-  // Форма отправляется на Formspree, уведомление
+  // Плавное появление при прокрутке (Intersection Observer)
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // после появления отключаем
+      }
+    });
+  }, { threshold: 0.2, rootMargin: "0px 0px -10px 0px" });
+  fadeElements.forEach(el => observer.observe(el));
+
+  // Дополнительная инициализация для фото внутри секций (они уже внутри .fade-up, но добавим также для полароидов)
+  const extraItems = document.querySelectorAll('.photo, .frame, .polaroid-card, .item');
+  extraItems.forEach(el => {
+    if (!el.classList.contains('fade-up')) {
+      el.classList.add('fade-up');
+      observer.observe(el);
+    }
+  });
+
+  // Форма отправки
   const rsvpForm = document.getElementById('rsvpForm');
   if (rsvpForm) {
     rsvpForm.addEventListener('submit', (e) => {
@@ -980,3 +984,4 @@
 </script>
 </body>
 </html>
+

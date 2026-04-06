@@ -115,17 +115,6 @@
       color: #2c2c2c;
     }
 
-    /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* ===== ОБЩИЕ ОТСТУПЫ ===== */
     .story, .invite-block, .calendar-block, .dresscode-section, .details-section, .rsvp {
       padding: 50px 24px;
@@ -344,7 +333,6 @@
     .btn-location:hover {
       background: #fff;
       color: #b7a99a;
-      transform: translateY(-2px);
     }
     .photos-loc {
       margin-top: 40px;
@@ -360,7 +348,7 @@
       transition: transform 0.3s ease;
     }
     .polaroid-card:hover {
-      transform: rotate(0deg) scale(1.02);
+      transform: scale(1.02);
     }
     .polaroid-card img {
       width: 140px;
@@ -699,6 +687,15 @@
     }
     .rsvp button:hover { background: #fff; color: #b7a99a; }
 
+    /* ===== НОВАЯ АНИМАЦИЯ ТОЛЬКО ДЛЯ ТЕКСТА (плавное появление без смещения) ===== */
+    .fade-text {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .fade-text.visible {
+      opacity: 1;
+    }
+
     /* ===== АДАПТИВНОСТЬ ===== */
     @media (max-width: 680px) {
       .photo img { width: 140px; height: 140px; }
@@ -750,26 +747,26 @@
   <audio id="weddingAudio" src="Beautiful_Boys_-_Nezhnaya_Lyubov_77602132.mp3" loop preload="auto"></audio>
 </div>
 
-<section class="story fade-up">
+<section class="story">
   <div class="photos">
     <div class="photo"><img src="1.png" alt="Детское фото"></div>
     <div class="photo"><img src="2.png" alt="Детское фото 2"></div>
   </div>
-  <div class="love">Г + Я <span class="heart-icon">♡</span></div>
-  <div class="title">Узнаете этих детишек?</div>
-  <div class="text">Да-да, это мы!<br><br>Время летит так быстро, представляете? И вот мы уже повзрослели,<br>кажется пришло время создавать свою семью!</div>
+  <div class="love fade-text">Г + Я <span class="heart-icon">♡</span></div>
+  <div class="title fade-text">Узнаете этих детишек?</div>
+  <div class="text fade-text">Да-да, это мы!<br><br>Время летит так быстро, представляете? И вот мы уже повзрослели,<br>кажется пришло время создавать свою семью!</div>
 </section>
 
-<section class="invite-block fade-up">
+<section class="invite-block">
   <div class="frame"><img src="молодые.jpeg" alt="Пара"></div>
-  <h2>РОДНЫЕ И ЛЮБИМЫЕ!</h2>
-  <p>Хотим, чтобы вы разделили с нами радость и были на торжестве в самый лучший и трогательный день в нашей жизни!</p>
+  <h2 class="fade-text">РОДНЫЕ И ЛЮБИМЫЕ!</h2>
+  <p class="fade-text">Хотим, чтобы вы разделили с нами радость и были на торжестве в самый лучший и трогательный день в нашей жизни!</p>
 </section>
 
-<section class="calendar-block fade-up">
-  <div class="month">— СЕНТЯБРЬ 2026 —</div>
-  <div class="weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
-  <div class="days">
+<section class="calendar-block">
+  <div class="month fade-text">— СЕНТЯБРЬ 2026 —</div>
+  <div class="weekdays fade-text"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
+  <div class="days fade-text">
     <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
     <span>6</span><span>7</span><span>8</span>
     <span>
@@ -781,32 +778,32 @@
     <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
     <span>27</span><span>28</span><span>29</span><span>30</span>
   </div>
-  <div class="calendar-date">19.09.2026</div>
-  <p class="footer-text">Мы будем безумно рады видеть вас в кругу наших гостей</p>
+  <div class="calendar-date fade-text">19.09.2026</div>
+  <p class="footer-text fade-text">Мы будем безумно рады видеть вас в кругу наших гостей</p>
 </section>
 
-<section class="location fade-up">
-  <h2>МЕСТО<br>ПРОВЕДЕНИЯ</h2>
-  <div class="sub">location</div>
-  <div class="info"><p class="main">Усадьба Бацькава Хата</p><p>Сморгонский район</p><p class="address">деревня Сутьково, 66</p></div>
-  <a href="https://yandex.by/maps/org/agrousadba_batskova_khata/144078539445/?ll=26.380394%2C54.386574&mode=search&sll=26.380394%2C54.385067&source=serp_navig&text=Усадьба%20Бацькава%20Хата&z=8" class="btn-location">ПОКАЗАТЬ НА КАРТЕ</a>
-  <div class="photos-loc">
+<section class="location">
+  <h2 class="fade-text">МЕСТО<br>ПРОВЕДЕНИЯ</h2>
+  <div class="sub fade-text">location</div>
+  <div class="info fade-text"><p class="main">Усадьба Бацькава Хата</p><p>Сморгонский район</p><p class="address">деревня Сутьково, 66</p></div>
+  <a href="https://yandex.by/maps/org/agrousadba_batskova_khata/144078539445/?ll=26.380394%2C54.386574&mode=search&sll=26.380394%2C54.385067&source=serp_navig&text=Усадьба%20Бацькава%20Хата&z=8" class="btn-location fade-text">ПОКАЗАТЬ НА КАРТЕ</a>
+  <div class="photos-loc fade-text">
     <div class="polaroid-card"><img src="место1.png" alt="Локация 1"></div>
     <div class="polaroid-card"><img src="место2.jpg" alt="Локация 2"></div>
   </div>
 </section>
 
-<section class="registry fade-up">
-  <h3>Торжественная регистрация</h3>
-  <p class="address-reg">Минская область, г. Молодечно, Центральная площадь, 5</p>
-  <p style="margin-bottom: 16px; opacity: 0.9;">Начало церемонии в 14:10</p>
-  <a href="https://yandex.by/maps/?text=Молодечно%20Центральная%20площадь%205&mode=search" target="_blank" rel="noopener noreferrer" class="btn-location">ОТКРЫТЬ В КАРТАХ</a>
+<section class="registry">
+  <h3 class="fade-text">Торжественная регистрация</h3>
+  <p class="address-reg fade-text">Минская область, г. Молодечно, Центральная площадь, 5</p>
+  <p style="margin-bottom: 16px; opacity: 0.9;" class="fade-text">Начало церемонии в 14:10</p>
+  <a href="https://yandex.by/maps/?text=Молодечно%20Центральная%20площадь%205&mode=search" target="_blank" rel="noopener noreferrer" class="btn-location fade-text">ОТКРЫТЬ В КАРТАХ</a>
 </section>
 
-<section class="timing fade-up">
-  <h2>ТАЙМИНГ ДНЯ</h2>
-  <div class="sub">Timing</div>
-  <div class="timeline">
+<section class="timing">
+  <h2 class="fade-text">ТАЙМИНГ ДНЯ</h2>
+  <div class="sub fade-text">Timing</div>
+  <div class="timeline fade-text">
     <div class="item"><div class="icon"><i class="fas fa-ring"></i></div><div class="time">14:10</div><div class="title">Церемония в ЗАГСе</div></div>
     <div class="item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div class="time">16:00</div><div class="title">Фуршет в усадьбе</div></div>
     <div class="item"><div class="icon"><i class="fas fa-utensils"></i></div><div class="time">17:00</div><div class="title">Банкет</div></div>
@@ -814,23 +811,23 @@
   </div>
 </section>
 
-<section class="dresscode-section fade-up">
-  <h2>ДРЕСС - КОД</h2>
-  <div class="subtitle">dress-code</div>
-  <p>Дресс-код свободный! В этот день мы не ограничиваем Вас в выборе цвета и стиля. Главное, чтобы Вы чувствовали себя комфортно и уютно!</p>
+<section class="dresscode-section">
+  <h2 class="fade-text">ДРЕСС - КОД</h2>
+  <div class="subtitle fade-text">dress-code</div>
+  <p class="fade-text">Дресс-код свободный! В этот день мы не ограничиваем Вас в выборе цвета и стиля. Главное, чтобы Вы чувствовали себя комфортно и уютно!</p>
 </section>
 
-<section class="details-section fade-up">
-  <h2>Пожелания</h2>
-  <div class="subtitle">details</div>
-  <p>Мы знаем, как Вы за нас рады и будем счастливы, если Вы захватите с собой отличное настроение и слезы умиления, а букеты замените на бутылку Вашего любимого алкогольного напитка, который мы откроем на ближайшем совместном празднике!</p>
+<section class="details-section">
+  <h2 class="fade-text">Пожелания</h2>
+  <div class="subtitle fade-text">details</div>
+  <p class="fade-text">Мы знаем, как Вы за нас рады и будем счастливы, если Вы захватите с собой отличное настроение и слезы умиления, а букеты замените на бутылку Вашего любимого алкогольного напитка, который мы откроем на ближайшем совместном празднике!</p>
 </section>
 
-<section class="wedding-block fade-up">
+<section class="wedding-block">
   <div class="overlay"></div>
   <div class="content">
-    <h1>ДО НАШЕЙ СВАДЬБЫ<br>ОСТАЛОСЬ:</h1>
-    <div class="timer">
+    <h1 class="fade-text">ДО НАШЕЙ СВАДЬБЫ<br>ОСТАЛОСЬ:</h1>
+    <div class="timer fade-text">
       <div><span id="weddingDays">0</span><small>ДНЕЙ</small></div>
       <div><span id="weddingHours">0</span><small>ЧАСОВ</small></div>
       <div><span id="weddingMinutes">0</span><small>МИНУТ</small></div>
@@ -839,11 +836,11 @@
   </div>
 </section>
 
-<section class="rsvp fade-up">
+<section class="rsvp">
   <div class="container">
-    <h2>АНКЕТА ГОСТЯ</h2>
-    <p class="note">пожалуйста, подтвердите свое присутствие до 01.09.2026</p>
-    <form id="rsvpForm" action="https://formspree.io/f/xreooebl" method="POST">
+    <h2 class="fade-text">АНКЕТА ГОСТЯ</h2>
+    <p class="note fade-text">пожалуйста, подтвердите свое присутствие до 01.09.2026</p>
+    <form id="rsvpForm" action="https://formspree.io/f/xreooebl" method="POST" class="fade-text">
       <label>Ваше имя и фамилия</label>
       <input type="text" name="name" placeholder="Имя и фамилия" required>
       
@@ -872,15 +869,15 @@
   </div>
 </section>
 
-<section class="contacts-block fade-up">
+<section class="contacts-block">
   <div class="contacts-content">
-    <h2>КОНТАКТЫ</h2>
-    <p class="desc">По всем вопросам вы можете<br>обращаться к нам</p>
-    <p class="person">Глеб +375297046554<br>Яна +375259027479</p>
-    <div class="divider"></div>
-    <p class="invite">С НЕТЕРПЕНИЕМ ЖДЕМ<br>ВСТРЕЧИ С ВАМИ<br>НА НАШЕЙ СВАДЬБЕ!</p>
-    <p class="love">С любовью,</p>
-    <p class="names-sign">Глеб & Яна</p>
+    <h2 class="fade-text">КОНТАКТЫ</h2>
+    <p class="desc fade-text">По всем вопросам вы можете<br>обращаться к нам</p>
+    <p class="person fade-text">Глеб +375297046554<br>Яна +375259027479</p>
+    <div class="divider fade-text"></div>
+    <p class="invite fade-text">С НЕТЕРПЕНИЕМ ЖДЕМ<br>ВСТРЕЧИ С ВАМИ<br>НА НАШЕЙ СВАДЬБЕ!</p>
+    <p class="love fade-text">С любовью,</p>
+    <p class="names-sign fade-text">Глеб & Яна</p>
   </div>
 </section>
 
@@ -923,8 +920,8 @@
   setInterval(updateWeddingTimer, 1000);
   updateWeddingTimer();
 
-  // Intersection Observer для плавного появления
-  const fadeElements = document.querySelectorAll('.fade-up');
+  // Плавное появление текста при скролле (без смещения блоков)
+  const textElements = document.querySelectorAll('.fade-text');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -932,8 +929,8 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
-  fadeElements.forEach(el => observer.observe(el));
+  }, { threshold: 0.1, rootMargin: "0px 0px -10px 0px" });
+  textElements.forEach(el => observer.observe(el));
 
   // Форма
   const rsvpForm = document.getElementById('rsvpForm');

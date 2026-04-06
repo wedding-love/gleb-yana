@@ -21,6 +21,7 @@
       background-color: #ffffff;
       color: #1e1e1e;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     /* Все заголовки — тонкий, изящный шрифт */
@@ -36,6 +37,17 @@
     /* Основной текст — Inter, лёгкий и читаемый */
     p, .text, .desc, .person, .address, .footer-text, .note, label, .radio-group, button, .btn, .btn-location, .btn-chat, .time, .drinks-group {
       font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Убираем все отступы между блоками — идут встык */
@@ -64,6 +76,7 @@
       inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
     }
+    /* ИМЕНА В ОДИН РЯД */
     .names {
       position: absolute;
       bottom: 6%;
@@ -74,11 +87,24 @@
       font-size: clamp(48px, 10vw, 120px);
       line-height: 1.2;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-      text-transform: capitalize;
       font-weight: 400;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.2em;
+      white-space: nowrap;
+    }
+    @media (max-width: 550px) {
+      .names {
+        white-space: normal;
+        flex-wrap: wrap;
+        gap: 0.1em;
+        font-size: clamp(42px, 12vw, 80px);
+      }
     }
     .names .amp {
-      font-size: 0.9em;
+      font-size: 1em;
+      margin: 0 0.1em;
     }
     .date {
       position: absolute;
@@ -267,7 +293,7 @@
       color: #4a4a4a;
     }
 
-    /* ===== МЕСТО ПРОВЕДЕНИЯ (НОВЫЙ ЦВЕТ) ===== */
+    /* ===== МЕСТО ПРОВЕДЕНИЯ ===== */
     .location {
       background: #b7a99a;
       color: #fff;
@@ -329,7 +355,7 @@
     .p1-wrap { --rot: -8deg; position: relative; top: -10px; }
     .p2-wrap { --rot: 8deg; position: relative; top: 15px; }
 
-    /* Дополнительный блок ЗАГС */
+    /* Дополнительный блок ЗАГС + КНОПКА В КАРТАХ */
     .registry {
       background: #b7a99a;
       color: #fff;
@@ -345,9 +371,34 @@
     .registry .address-reg {
       font-size: 18px;
       opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .btn-map-reg {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(2px);
+      padding: 10px 24px;
+      border-radius: 40px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.6);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+    .btn-map-reg i {
+      font-size: 16px;
+    }
+    .btn-map-reg:hover {
+      background: #fff;
+      color: #b7a99a;
+      border-color: #fff;
     }
 
-    /* ===== ТАЙМИНГ ДНЯ (НОВЫЙ ЦВЕТ) ===== */
+    /* ===== ТАЙМИНГ ДНЯ ===== */
     .timing {
       background: #b7a99a;
       color: #fff;
@@ -368,8 +419,6 @@
     .item {
       max-width: 340px;
       margin: auto;
-      opacity: 1;
-      transform: none;
     }
     .icon { font-size: 48px; margin-bottom: 12px; color: #fff; }
     .time { font-size: 32px; font-weight: 400; margin-bottom: 8px; }
@@ -470,7 +519,7 @@
       position: relative;
       height: 85vh;
       min-height: 500px;
-      background: url('молодые.jpg') center/cover no-repeat;
+      background: url('image.jpg') center/cover no-repeat;
       color: white;
       display: flex;
       align-items: flex-start;
@@ -578,7 +627,7 @@
       font-weight: 400;
     }
 
-    /* ===== RSVP (НОВЫЙ ЦВЕТ) ===== */
+    /* ===== RSVP ===== */
     .rsvp {
       background: #b7a99a;
       color: #fff;
@@ -632,18 +681,27 @@
       margin: 12px 0;
     }
     .radio-group input[type="radio"] { accent-color: #fff; width: 18px; height: 18px; }
+    
+    /* НАПИТКИ СТОЛБИКОМ */
     .drinks-group {
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
       margin: 10px 0 5px;
     }
     .drinks-group label {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-weight: normal;
       margin: 0;
+      cursor: pointer;
+    }
+    .drinks-group input {
+      width: 18px;
+      height: 18px;
+      accent-color: #fff;
     }
     .rsvp button {
       width: 100%;
@@ -690,27 +748,27 @@
 </head>
 <body>
 
-<!-- ПЕРВЫЙ ЭКРАН -->
+<!-- ПЕРВЫЙ ЭКРАН: имена в один ряд -->
 <section class="hero">
   <img src="молодые.jpeg" alt="Глеб и Яна">
   <div class="hero-overlay"></div>
   <div class="date">19<br>09<br>26</div>
   <div class="names">
-    Глеб<br>
-    <span class="amp">&</span><br>
-    Яна
+    <span>Глеб</span>
+    <span class="amp">&</span>
+    <span>Яна</span>
   </div>
 </section>
 
 <!-- МУЗЫКА -->
-<div class="music">
+<div class="music fade-up">
   <button id="musicToggleBtn"><i class="fas fa-play"></i></button>
   <div class="music-text">ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ МУЗЫКУ</div>
-  <audio id="weddingAudio" src="music.mp3" loop preload="auto"></audio>
+  <audio id="weddingAudio" src="Beautiful_Boys_-_Nezhnaya_Lyubov_77602132.mp3" loop preload="auto"></audio>
 </div>
 
 <!-- ИСТОРИЯ -->
-<section class="story">
+<section class="story fade-up">
   <div class="photos">
     <div class="photo"><img src="1.png" alt="Детское фото"></div>
     <div class="photo"><img src="2.png" alt="Детское фото 2"></div>
@@ -721,14 +779,14 @@
 </section>
 
 <!-- РОДНЫЕ И ЛЮБИМЫЕ -->
-<section class="invite-block">
-  <div class="frame"><img src="пара.jpg" alt="Пара"></div>
+<section class="invite-block fade-up">
+  <div class="frame"><img src="молодые.jpg" alt="Пара"></div>
   <h2>РОДНЫЕ И ЛЮБИМЫЕ!</h2>
   <p>Хотим, чтобы вы разделили с нами радость и были на торжестве в самый лучший и трогательный день в нашей жизни!</p>
 </section>
 
 <!-- КАЛЕНДАРЬ -->
-<section class="calendar-block">
+<section class="calendar-block fade-up">
   <div class="month">— СЕНТЯБРЬ 2026 —</div>
   <div class="weekdays"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
   <div class="days">
@@ -747,27 +805,31 @@
   <p class="footer-text">Мы будем безумно рады видеть вас в кругу наших гостей</p>
 </section>
 
-<!-- МЕСТО ПРОВЕДЕНИЯ + ЗАГС -->
-<section class="location">
+<!-- МЕСТО ПРОВЕДЕНИЯ -->
+<section class="location fade-up">
   <h2>МЕСТО<br>ПРОВЕДЕНИЯ</h2>
   <div class="sub">location</div>
   <div class="info"><p class="main">Усадьба Бацькава Хата</p><p>Сморгонский район</p><p class="address">деревня Сутьково, 66</p></div>
   <a href="https://yandex.by/maps/org/agrousadba_batskova_khata/144078539445/?ll=26.380394%2C54.386574&mode=search&sll=26.380394%2C54.385067&source=serp_navig&text=Усадьба%20Бацькава%20Хата&z=8" class="btn-location">ПОКАЗАТЬ НА КАРТЕ</a>
   <div class="photos-loc">
-    <div class="polaroid-card p1-wrap"><img src="место1.png" alt="Локация 1"></div>
+    <div class="polaroid-card p1-wrap"><img src="место1.jpg" alt="Локация 1"></div>
     <div class="polaroid-card p2-wrap"><img src="место2.jpg" alt="Локация 2"></div>
   </div>
 </section>
 
-<!-- ДОПОЛНИТЕЛЬНО: ЗАГС -->
-<section class="registry">
+<!-- ЗАГС + КНОПКА ОТКРЫТЬ В КАРТАХ -->
+<section class="registry fade-up">
   <h3>Торжественная регистрация</h3>
   <p class="address-reg">Минская область, г. Молодечно, Центральная площадь, 5</p>
-  <p style="margin-top: 15px; opacity: 0.9;">Начало церемонии в 14:10</p>
+  <p style="margin-bottom: 16px; opacity: 0.9;">Начало церемонии в 14:10</p>
+  <!-- Кнопка "Открыть в картах" с ссылкой на Яндекс.Карты -->
+  <a href="https://yandex.by/maps/?text=Молодечно%20Центральная%20площадь%205&mode=search" target="_blank" rel="noopener noreferrer" class="btn-map-reg">
+    <i class="fas fa-map-marker-alt"></i> Открыть в картах
+  </a>
 </section>
 
-<!-- ТАЙМИНГ ДНЯ (исправленный) -->
-<section class="timing">
+<!-- ТАЙМИНГ ДНЯ -->
+<section class="timing fade-up">
   <h2>ТАЙМИНГ ДНЯ</h2>
   <div class="sub">Timing</div>
   <div class="timeline">
@@ -780,12 +842,14 @@
     <div class="item">
       <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
       <div class="time">16:00</div>
-      <div class="title">Фуршет </div>
+      <div class="title">Фуршет в усадьбе</div>
+      <div class="desc">Встреча гостей, легкие закуски</div>
     </div>
     <div class="item">
       <div class="icon"><i class="fas fa-utensils"></i></div>
       <div class="time">17:00</div>
       <div class="title">Банкет</div>
+      <div class="desc">Торжественный ужин и танцы</div>
     </div>
     <div class="item">
       <div class="icon"><i class="fas fa-birthday-cake"></i></div>
@@ -796,22 +860,21 @@
 </section>
 
 <!-- ДРЕСС-КОД -->
-<section class="dresscode-section">
+<section class="dresscode-section fade-up">
   <h2>ДРЕСС - КОД</h2>
   <div class="subtitle">dress-code</div>
   <p>Дресс-код свободный! В этот день мы не ограничиваем Вас в выборе цвета и стиля. Главное, чтобы Вы чувствовали себя комфортно и уютно!</p>
 </section>
 
 <!-- ДЕТАЛИ -->
-<section class="details-section">
+<section class="details-section fade-up">
   <h2>Пожелания</h2>
   <div class="subtitle">details</div>
   <p>Мы знаем, как Вы за нас рады и будем счастливы, если Вы захватите с собой отличное настроение и слезы умиления, а букеты замените на бутылку Вашего любимого алкогольного напитка, который мы откроем на ближайшем совместном празднике!</p>
 </section>
 
-
-<!-- ТАЙМЕР ДО СВАДЬБЫ (дата 19.09.2026) -->
-<section class="wedding-block">
+<!-- ТАЙМЕР ДО СВАДЬБЫ -->
+<section class="wedding-block fade-up">
   <div class="overlay"></div>
   <div class="content">
     <h1>ДО НАШЕЙ СВАДЬБЫ<br>ОСТАЛОСЬ:</h1>
@@ -824,8 +887,8 @@
   </div>
 </section>
 
-<!-- АНКЕТА ГОСТЯ с Formspree и выбором напитков -->
-<section class="rsvp">
+<!-- АНКЕТА ГОСТЯ: напитки столбиком, форма адаптивна -->
+<section class="rsvp fade-up">
   <div class="container">
     <h2>АНКЕТА ГОСТЯ</h2>
     <div class="subtitle">RSVP</div>
@@ -844,6 +907,7 @@
       <input type="text" name="guests_names" placeholder="Имена и возраст">
       
       <label>Предпочтения по напиткам (можно выбрать несколько)</label>
+      <!-- напитки теперь идут строго столбиком -->
       <div class="drinks-group">
         <label><input type="checkbox" name="drinks" value="Шампанское"> Шампанское</label>
         <label><input type="checkbox" name="drinks" value="Белое вино"> Белое вино</label>
@@ -860,7 +924,7 @@
 </section>
 
 <!-- КОНТАКТЫ -->
-<section class="contacts-block">
+<section class="contacts-block fade-up">
   <div class="contacts-content">
     <h2>КОНТАКТЫ</h2>
     <p class="desc">По всем вопросам вы можете<br>обращаться к нам</p>
@@ -873,6 +937,18 @@
 </section>
 
 <script>
+  // Плавное появление при скролле (Intersection Observer)
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+  fadeElements.forEach(el => observer.observe(el));
+
   // Музыка
   const audio = document.getElementById('weddingAudio');
   const toggleBtn = document.getElementById('musicToggleBtn');
@@ -911,42 +987,45 @@
   setInterval(updateWeddingTimer, 1000);
   updateWeddingTimer();
 
-  // Слайдер
+  // Слайдер (если в будущем добавите слайдер, но сейчас его нет в HTML — оставляем код готовым)
   const sliderWrapper = document.getElementById('sliderWrapper');
   const slides = document.querySelectorAll('.slide');
   const prevBtn = document.getElementById('prevSlide');
   const nextBtn = document.getElementById('nextSlide');
   const dotsContainer = document.getElementById('sliderDots');
-  let currentIndex = 0;
-  const totalSlides = slides.length;
-  function updateSlider() {
-    sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-    document.querySelectorAll('.dot').forEach((dot, idx) => { dot.classList.toggle('active', idx === currentIndex); });
-  }
-  function createDots() {
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('span');
-      dot.classList.add('dot');
-      if (i === currentIndex) dot.classList.add('active');
-      dot.addEventListener('click', () => { currentIndex = i; updateSlider(); });
-      dotsContainer.appendChild(dot);
+  if (sliderWrapper && slides.length) {
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    function updateSlider() {
+      sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+      document.querySelectorAll('.dot').forEach((dot, idx) => { dot.classList.toggle('active', idx === currentIndex); });
     }
-  }
-  if (totalSlides > 0) {
-    prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateSlider(); });
-    nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % totalSlides; updateSlider(); });
+    function createDots() {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => { currentIndex = i; updateSlider(); });
+        dotsContainer.appendChild(dot);
+      }
+    }
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateSlider(); });
+      nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % totalSlides; updateSlider(); });
+    }
     createDots();
   }
 
-  // Форма отправляется на Formspree, дополнительно показываем сообщение
+  // Форма отправляется на Formspree, небольшое уведомление
   const rsvpForm = document.getElementById('rsvpForm');
-  rsvpForm.addEventListener('submit', (e) => {
-    // Formspree обработает отправку асинхронно, но мы покажем уведомление
-    setTimeout(() => {
-      alert('Спасибо! Ваш ответ отправлен.');
-    }, 100);
-  });
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', (e) => {
+      setTimeout(() => {
+        alert('Спасибо! Ваш ответ отправлен.');
+      }, 100);
+    });
+  }
 </script>
 </body>
 </html>

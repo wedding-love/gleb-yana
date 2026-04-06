@@ -101,12 +101,12 @@
       border: none;
       font-size: 44px;
       cursor: pointer;
-      color: #1e1e1e;
-      transition: transform 0.2s ease, color 0.2s;
+      color: #000000; /* ВСЕГДА ЧЕРНАЯ */
+      transition: transform 0.2s ease;
     }
     .music button:hover {
       transform: scale(1.05);
-      color: #b7a99a;
+      color: #000000; /* ОСТАЕТСЯ ЧЕРНОЙ */
     }
     .music-text {
       font-size: 18px;
@@ -216,7 +216,7 @@
       color: #444;
     }
 
-    /* ===== КАЛЕНДАРЬ ===== */
+    /* ===== КАЛЕНДАРЬ (ИСПРАВЛЕН: 19.09.2026 - СУББОТА) ===== */
     .calendar-block {
       background: #ffffff;
       text-align: center;
@@ -687,7 +687,7 @@
     }
     .rsvp button:hover { background: #fff; color: #b7a99a; }
 
-    /* ===== НОВАЯ АНИМАЦИЯ ТОЛЬКО ДЛЯ ТЕКСТА (плавное появление без смещения) ===== */
+    /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
     .fade-text {
       opacity: 0;
       transition: opacity 0.6s ease;
@@ -758,25 +758,29 @@
 </section>
 
 <section class="invite-block">
-  <div class="frame"><img src="молодые.jpeg" alt="Пара"></div>
+  <div class="frame"><img src="любовь.png" alt="Пара"></div>
   <h2 class="fade-text">РОДНЫЕ И ЛЮБИМЫЕ!</h2>
   <p class="fade-text">Хотим, чтобы вы разделили с нами радость и были на торжестве в самый лучший и трогательный день в нашей жизни!</p>
 </section>
 
+<!-- ИСПРАВЛЕННЫЙ КАЛЕНДАРЬ: 19.09.2026 - СУББОТА -->
 <section class="calendar-block">
   <div class="month fade-text">— СЕНТЯБРЬ 2026 —</div>
   <div class="weekdays fade-text"><span>ПН</span><span>ВТ</span><span>СР</span><span>ЧТ</span><span>ПТ</span><span>СБ</span><span>ВС</span></div>
   <div class="days fade-text">
-    <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-    <span>6</span><span>7</span><span>8</span>
+    <!-- 1 сентября 2026 — вторник, значит первые две ячейки пустые (ПН, ВТ?) Нет: ПН пустая, ВТ — 1 число -->
+    <span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+    <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+    <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
     <span>
       <div class="heart-number">
         <i class="fas fa-heart"></i>
         <span>19</span>
       </div>
     </span>
-    <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
-    <span>27</span><span>28</span><span>29</span><span>30</span>
+    <span>20</span>
+    <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+    <span>28</span><span>29</span><span>30</span>
   </div>
   <div class="calendar-date fade-text">19.09.2026</div>
   <p class="footer-text fade-text">Мы будем безумно рады видеть вас в кругу наших гостей</p>
@@ -787,10 +791,6 @@
   <div class="sub fade-text">location</div>
   <div class="info fade-text"><p class="main">Усадьба Бацькава Хата</p><p>Сморгонский район</p><p class="address">деревня Сутьково, 66</p></div>
   <a href="https://yandex.by/maps/org/agrousadba_batskova_khata/144078539445/?ll=26.380394%2C54.386574&mode=search&sll=26.380394%2C54.385067&source=serp_navig&text=Усадьба%20Бацькава%20Хата&z=8" class="btn-location fade-text">ПОКАЗАТЬ НА КАРТЕ</a>
-  <div class="photos-loc fade-text">
-    <div class="polaroid-card"><img src="место1.png" alt="Локация 1"></div>
-    <div class="polaroid-card"><img src="место2.jpg" alt="Локация 2"></div>
-  </div>
 </section>
 
 <section class="registry">
@@ -882,7 +882,7 @@
 </section>
 
 <script>
-  // Музыка
+  // Музыка (кнопка всегда чёрная)
   const audio = document.getElementById('weddingAudio');
   const toggleBtn = document.getElementById('musicToggleBtn');
   function updateButtonIcon() {
@@ -920,7 +920,7 @@
   setInterval(updateWeddingTimer, 1000);
   updateWeddingTimer();
 
-  // Плавное появление текста при скролле (без смещения блоков)
+  // Плавное появление текста
   const textElements = document.querySelectorAll('.fade-text');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
